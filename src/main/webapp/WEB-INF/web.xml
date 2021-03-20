@@ -5,7 +5,7 @@
          version="4.0">
     <!--add code about servlet-->
     <servlet>
-        <servlet-name>anyName</servlet-name><!--give any name -->
+        <servlet-name>anyName</servlet-name>
         <servlet-class>com.YaoBingxian.week2.demo.HelloWorldservlet</servlet-class><!--package +name of servlet class -->
     </servlet>
     <servlet>

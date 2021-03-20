@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" action="register"><!-- within doPost() in servlet -->
+<form method="post" action="register">
     username:<input type="text" name="username"/><br/>
     password:<input type="password" name="password"/><br/>
     email:<input type="email" name="email"/><br/>
