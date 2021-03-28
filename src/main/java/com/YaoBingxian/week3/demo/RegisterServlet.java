@@ -1,12 +1,33 @@
 package com.YaoBingxian.week3.demo;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.*;
+import java.text.SimpleDateFormat;
+@WebServlet(
+        urlPatterns = {"/register"}
+)
 
-//automatic -new ->servlet
 public class RegisterServlet extends HttpServlet {
+    Connection con=null;
+    @Override
+    public void init() throws ServletException {
+        String driver=getServletConfig().getServletContext().getInitParameter("driver");
+        String url=getServletConfig().getServletContext().getInitParameter("url");
+        String username=getServletConfig().getServletContext().getInitParameter("username");
+        String password=getServletConfig().getServletContext().getInitParameter("password");
+        try {
+            Class.forName(driver);
+            con= DriverManager.getConnection(url,username,password);
+            System.out.println("init()-->"+con);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -14,19 +35,69 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//request come here
-        String username = request.getParameter("username");//name of input type
-        String password = request.getParameter("password");//<input type="password" name="password"/><br/>
-        String email = request.getParameter("email");//:<input type="text" name="email"/><br/>
-        String gender = request.getParameter("gender");//<input type="radio" name="gender"/>Male
-        String birthDate = request.getParameter("birthDate");//<input type="text name =" name="birthDate"><br/>
+        String Username=request.getParameter("Username");
+        String password=request.getParameter("password");
+        String Email=request.getParameter("Email");
+        String Gender=request.getParameter("Gender");
+        String Date=request.getParameter("Date");
 
-        PrintWriter writer = response.getWriter();
-        writer.println("<br>username :"+username);
-        writer.println("<br>password"+password);
-        writer.println("<br>email"+email);
-        writer.println("<br>gender"+gender);
-        writer.println("<br>birth Date"+birthDate);
-        writer.close();
+        /*PrintWriter writer= response.getWriter();
+        writer.println("<br>Username :"+Username);
+        writer.println("<br>password :"+password);
+        writer.println("<br>Email :"+Email);
+        writer.println("<br>Gender :"+Gender);
+        writer.println("<br>Date :"+Date);
+        writer.close();*/
+        String sql1="insert into Usertable values(?,?,?,?,?)";
+        PreparedStatement pstmt= null;
+        try {
+            pstmt = con.prepareStatement(sql1);
+            pstmt.setString(1,Username);
+            pstmt.setString(2,password);
+            pstmt.setString(3,Email);
+            pstmt.setString(4,Gender);
+            pstmt.setString(5,Date);
+            pstmt.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        response.setContentType("text/html");
+        PrintWriter out=response.getWriter();
+        out.println("<html>");
+        out.println("<head><title>Register</title></head>");
+        out.println("<body>");
+        out.println("<table>");
+        out.println("<tr><td>ID</td><td>username</td><td>password</td><td>Email</td><td>Gender</td><td>Birthdate</td></tr>");
+        String sql2="select * from Usertable";
+        ResultSet rs= null;
+        try {
+            rs = con.createStatement().executeQuery(sql2);
+            while(rs.next()){
+                int id=rs.getInt("id");
+                String username=rs.getString("username");
+                String password1=rs.getString("password");
+                String email=rs.getString("email");
+                String gender=rs.getString("gender");
+                Date birthdate=rs.getDate("birthdate");
+                SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+                out.println("<tr><td>"+id+"</td><td>"+username+"</td><td>"+password1+"</td><td>"+email+"</td><td>"+gender+"</td><td>"+sdf.format(birthdate)+"</td></tr>");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        out.println("</table>");
+        out.println("</body>");
+        out.println("</html>");
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+        try {
+            con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
+
