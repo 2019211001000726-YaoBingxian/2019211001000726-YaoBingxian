@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: 86177
-  Date: 2021/3/28
-  Time: 21:47
+  Date: 2021/3/29
+  Time: 9:05
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,11 +14,11 @@
             text-align: right;
             height: 25px;
         }
-        </style>
-         </head>
+    </style>
+</head>
 <body>
 <h1>New User Registration</h1>
-<form method="post" action="/2019211001000713ZhouWeiqiang_war_exploded/Register">
+<form method="post" action="register">
     <table>
         <tr> <td class="right">Username：</td> <td><input type="text" name="Username" required><br/></td></tr>
         <tr> <td class="right">password：</td> <td><input type="password" name="password" required minlength="8"><br/></td></tr>
@@ -36,3 +36,4 @@
 </form>
 </body>
 </html>
+

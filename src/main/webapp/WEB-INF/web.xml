@@ -12,10 +12,41 @@
         <servlet-name>LifeCycleServlet</servlet-name>
         <servlet-class>com.YaoBingxian.week3.demo.LifeCycleServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>RegisterServlet</servlet-name>
-        <servlet-class>com.YaoBingxian.week3.demo.RegisterServlet</servlet-class>
-    </servlet>
+
+
+
+    <!--<servlet>
+      <servlet-name>ConfigDemoServlet</servlet-name>
+      <servlet-class>com.YaoBingxian.week4.demo.ConfigDemoServlet</servlet-class>
+      <init-param>
+          <param-name>name</param-name>
+          <param-value>YaoBingxian</param-value>
+      </init-param>
+      <init-param>
+          <param-name>studendID</param-name>
+          <param-value>2019211001000726</param-value>
+      </init-param>
+      <load-on-startup>1</load-on-startup>
+      </servlet>
+-->
+
+    <context-param>
+        <param-name>driver</param-name>
+        <param-value>com.microsoft.sqlserver.jdbc.SQLServerDriver</param-value>
+    </context-param>
+    <context-param>
+        <param-name>url</param-name>
+        <param-value>jdbc:sqlserver://localhost;databaseName=userdb;</param-value>
+    </context-param>
+    <context-param>
+        <param-name>username</param-name>
+        <param-value>sa</param-value>
+    </context-param>
+    <context-param>
+        <param-name>password</param-name>
+        <param-value>555236a</param-value>
+    </context-param>
+
     <servlet-mapping>
         <servlet-name>anyName</servlet-name>
         <url-pattern>/hello</url-pattern><!--url must start with /-->
@@ -25,8 +56,13 @@
         <url-pattern>/life</url-pattern>
         <!--/life ==LifeCycleServlet==com.YaoBingxian.week3.demo.LifeCycleServlet-->
     </servlet-mapping>
+    <!--<servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.YaoBingxian.week3.demo.RegisterServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
+
 </web-app>
