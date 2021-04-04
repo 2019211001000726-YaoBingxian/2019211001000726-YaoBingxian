@@ -56,6 +56,7 @@
         <url-pattern>/life</url-pattern>
         <!--/life ==LifeCycleServlet==com.YaoBingxian.week3.demo.LifeCycleServlet-->
     </servlet-mapping>
+
     <!--<servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>com.YaoBingxian.week3.demo.RegisterServlet</servlet-class>

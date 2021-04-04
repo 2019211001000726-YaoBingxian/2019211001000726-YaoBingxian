@@ -5,19 +5,8 @@
   Time: 9:05
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-    <style>
-        td.right{
-            text-align: right;
-            height: 25px;
-        }
-    </style>
-</head>
-<body>
-<h1>New User Registration</h1>
+<%@include file="header.jsp"%>
+
 <form method="post" action="register">
     <table>
         <tr> <td class="right">Username：</td> <td><input type="text" name="Username" required><br/></td></tr>
@@ -34,6 +23,4 @@
         <tr> <td></td><td><input type="submit" value="Register"/></td>  </tr>
     </table>
 </form>
-</body>
-</html>
-
+<%@include file="footer.jsp"%>
