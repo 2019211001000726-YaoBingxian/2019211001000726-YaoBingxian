@@ -15,11 +15,11 @@
 <table border=1>
     <tr><td>ID</td><td>username</td><td>password</td><td>Email</td><td>Gender</td><td>Birthdate</td></tr>
     <%
-        ResultSet rs= (ResultSet) request.getAttribute("rsname");%>
+        ResultSet rs= (ResultSet) request.getAttribute("rsname");
         if(rs==null){
-
-    <tr><td>No Data !!!</td></tr>}
-    <%else{
+    %>
+    <tr><td>No Data !!!</td></tr>
+    <%}else{
         while(rs.next()){
             int id=rs.getInt("id");
             String username=rs.getString("username");
