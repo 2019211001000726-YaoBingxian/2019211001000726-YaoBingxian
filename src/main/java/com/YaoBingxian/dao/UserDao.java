@@ -22,7 +22,15 @@ public class UserDao implements IUserDao{
 
     @Override
     public int updateUser(Connection con, User user) throws SQLException {
-        return 0;
+        String sql="update Usertable set username=?,password=?,email=?,gender=?,birthdate=? where id=?";
+        PreparedStatement ps= con.prepareStatement(sql);
+        ps.setString(1,user.getUsername());
+        ps.setString(2,user.getPassword());
+        ps.setString(3,user.getEmail());
+        ps.setString(4,user.getGender());
+        ps.setDate(5,new java.sql.Date(user.getBirthDate().getTime()));
+        ps.setInt(6,user.getId());
+        return ps.executeUpdate();
     }
 
     @Override
@@ -77,6 +85,6 @@ public class UserDao implements IUserDao{
 
     @Override
     public List<User> findAllUser(Connection con) throws SQLException {
-        return null;
+         return null;
     }
 }
