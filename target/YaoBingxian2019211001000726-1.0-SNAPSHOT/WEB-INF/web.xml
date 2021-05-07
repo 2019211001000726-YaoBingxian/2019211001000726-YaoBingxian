@@ -6,7 +6,7 @@
     <!--add code about servlet-->
     <servlet>
         <servlet-name>anyName</servlet-name>
-        <servlet-class>com.YaoBingxian.week2.demo.HelloWorldservlet</servlet-class><!--package +name of servlet class -->
+        <servlet-class>com.YaoBingxian.week2.demo.HelloWorldservlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LifeCycleServlet</servlet-name>
@@ -48,7 +48,7 @@
     </context-param>
 
     <servlet-mapping>
-        <servlet-name>anyName</servlet-name>
+        <servlet-name>helloServlet</servlet-name>
         <url-pattern>/hello</url-pattern><!--url must start with /-->
     </servlet-mapping>
     <servlet-mapping>
@@ -68,4 +68,35 @@
     <welcome-file-list>
         <welcome-file>home</welcome-file>
     </welcome-file-list>
+
+    <!--1st-->
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>com.YaoBingxian.filter.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>Helloservlet</filter-name>
+        <filter-class>com.YaoBingxian.filter.HelloFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HelloFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+    <!--2nd-->
+    <filter>
+        <filter-name>loggerFilter</filter-name>
+        <filter-class>com.YaoBingxian.filter.loggerFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>loggerFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+    <!--3rd-->
+
+
 </web-app>
