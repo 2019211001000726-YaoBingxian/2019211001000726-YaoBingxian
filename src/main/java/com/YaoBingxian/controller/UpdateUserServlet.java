@@ -36,7 +36,7 @@ public class UpdateUserServlet extends HttpServlet {
             user.setPassword(password);
             user.setEmail(Email);
             user.setGender(Gender);
-            user.setBirthDate(Date);
+            user.setBirthdate(Date);
             UserDao userDao=new UserDao();
             Connection con = (Connection) getServletContext().getAttribute("con");
             try {
@@ -45,7 +45,7 @@ public class UpdateUserServlet extends HttpServlet {
                     HttpSession session=request.getSession();
                     session.setMaxInactiveInterval(10);
                     session.setAttribute("user",user1);
-                    request.getRequestDispatcher("WEB-INF/views/userInfo.jsp").forward(request, response);
+                    request.getRequestDispatcher("accountDetails").forward(request, response);
                 }
             } catch (SQLException throwable) {
                 throwable.printStackTrace();

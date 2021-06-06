@@ -82,4 +82,7 @@ public class User {
                 ", birthDate=" + birthDate +
                 '}';
     }
+
+    public void setBirthdate(Date date) {
+    }
 }
