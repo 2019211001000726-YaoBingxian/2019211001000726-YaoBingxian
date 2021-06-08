@@ -10,7 +10,7 @@
 		<div class="col-sm-6">
 			<div class="total_area">
 				<%
-					if(!(request.getAttribute("user")==null)){
+					if(!(request.getAttribute("user")==null)) {
 						User u=(User)request.getAttribute("user");
 				%>
 				<ul>
