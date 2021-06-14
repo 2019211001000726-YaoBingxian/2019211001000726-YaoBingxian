@@ -44,7 +44,7 @@ public class UserDao implements IUserDao{
         pstmt.setString(4,user.getGender());
         pstmt.setDate(5,new java.sql.Date(user.getBirthDate().getTime()));
         pstmt.setInt(6,user.getId());
-        return pstmt.executeUpdate();//xinde
+        return pstmt.executeUpdate();//
     }
 
     @Override
